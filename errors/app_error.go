@@ -32,9 +32,8 @@ func (appError AppError) HttpStatusCode() int {
 
 func NewAppErr(code string, err error, msg string, httpStatusCode int) AppError {
 	return AppError{
-		err:            err,
-		code:           code,
-		msg:            msg,
-		httpStatusCode: httpStatusCode,
+		code: code,
+		err:  err,
+		msg:  msg,
 	}
 }
