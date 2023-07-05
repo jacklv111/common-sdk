@@ -10,7 +10,7 @@ package errors
 type AppError struct {
 	err  error
 	code string
-	msg  string
+	args []string
 }
 
 func (appError AppError) Error() error {
@@ -21,14 +21,18 @@ func (appError AppError) Code() string {
 	return appError.code
 }
 
-func (appError AppError) Message() string {
-	return appError.msg
+func (appError AppError) Args() []string {
+	return appError.args
 }
 
-func NewAppErr(code string, err error, msg string) AppError {
+// NewAppErr create a new AppError
+// code: error code
+// err: error
+// args: args in the error message template
+func NewAppErr(code string, err error, args ...string) AppError {
 	return AppError{
 		code: code,
 		err:  err,
-		msg:  msg,
+		args: args,
 	}
 }
