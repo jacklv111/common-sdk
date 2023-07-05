@@ -8,9 +8,10 @@
 package errors
 
 type AppError struct {
-	err  error
-	code string
-	msg  string
+	err            error
+	code           string
+	msg            string
+	httpStatusCode int
 }
 
 func (appError AppError) Error() error {
@@ -25,7 +26,11 @@ func (appError AppError) Message() string {
 	return appError.msg
 }
 
-func NewAppErr(code string, err error, msg string) AppError {
+func (appError AppError) HttpStatusCode() int {
+	return appError.httpStatusCode
+}
+
+func NewAppErr(code string, err error, msg string, httpStatusCode int) AppError {
 	return AppError{
 		code: code,
 		err:  err,
