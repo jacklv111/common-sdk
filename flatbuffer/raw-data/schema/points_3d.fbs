@@ -1,0 +1,41 @@
+/*
+ * Created on Wed Jul 05 2023
+ *
+ * Copyright (c) 2023 Company-placeholder. All rights reserved.
+ *
+ * Author Yubinlv.
+ */
+
+
+namespace RawData.Points3D;
+
+struct Point3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+struct Rgb {
+    r:uint8;
+    g:uint8;
+    b:uint8;
+}
+
+table Points3D {
+    pos:[Point3];
+    rgb:[Rgb];
+    xmin:float;
+    xmax:float;
+    ymin:float;
+    ymax:float;
+    zmin:float;
+    zmax:float;
+    rmean:float;
+    gmean:float;
+    bmean:float;
+    rstd:float;
+    gstd:float;
+    bstd:float;
+}
+
+root_type Points3D;
