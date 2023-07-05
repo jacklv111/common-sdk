@@ -27,8 +27,8 @@ func (appError AppError) Message() string {
 
 func NewAppErr(code string, err error, msg string) AppError {
 	return AppError{
-		err:  err,
 		code: code,
+		err:  err,
 		msg:  msg,
 	}
 }
