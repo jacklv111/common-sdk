@@ -13,8 +13,8 @@ type AppError struct {
 	args []string
 }
 
-func (appError AppError) Error() error {
-	return appError.err
+func (appError AppError) Error() string {
+	return appError.err.Error()
 }
 
 func (appError AppError) Code() string {
