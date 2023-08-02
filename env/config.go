@@ -16,8 +16,8 @@ import (
 )
 
 const (
-	DEV  = "development"
-	PROD = "production"
+	DEV  = "dev"
+	PROD = "prod"
 	TEST = "test"
 )
 
