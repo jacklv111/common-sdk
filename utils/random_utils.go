@@ -6,7 +6,7 @@
  * Author Yubinlv.
  */
 
-package security
+package utils
 
 import (
 	"crypto/rand"

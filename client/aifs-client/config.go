@@ -35,7 +35,7 @@ func init() {
 }
 
 func (cfg aifsConfig) GetServerUrl() string {
-	return fmt.Sprintf("http://%s:%d/api/open/v1", cfg.ServerIp, cfg.ServerPort)
+	return fmt.Sprintf("https://%s:%d/api/open/v1", cfg.ServerIp, cfg.ServerPort)
 }
 
 func (cfg *aifsConfig) ReadFromFile() error {
