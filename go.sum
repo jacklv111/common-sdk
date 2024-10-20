@@ -82,6 +82,8 @@ github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
 github.com/jacklv111/aifs-client-go v0.0.2 h1:Fg8Jrhn32wkOr8gfGs2VmGIQw/Cdgh80DmBjnbGSMhI=
 github.com/jacklv111/aifs-client-go v0.0.2/go.mod h1:szwKqzPA6g2xQPvwNjwGha6VjhtCo5KI6ig6912fn4U=
+github.com/jacklv111/usermng-client-go v0.0.3 h1:hdFbUw7ORp3du395UwHlM6Lwh53nuWTgPbLlz19s1hA=
+github.com/jacklv111/usermng-client-go v0.0.3/go.mod h1:RmJbsfnHva/YLCxnnhdrqZaVVP0zD6rZH84SJTSgPgI=
 github.com/jawher/mow.cli v1.2.0/go.mod h1:y+pcA3jBAdo/GIZx/0rFjw/K2bVEODP9rfZOfaiq8Ko=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
