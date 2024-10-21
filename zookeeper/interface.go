@@ -125,3 +125,14 @@ func diff(oldList, newList []string) (added []string, removed []string) {
 
 	return added, removed
 }
+
+// GetNodeIp 获取指定节点的 ip
+// @param path 节点路径
+func GetNodeIp(path string) (string, error) {
+	data, _, err := conn.Get(path)
+	if err != nil {
+		log.Errorf("Unable to get data: %s", err)
+		return "", err
+	}
+	return string(data), nil
+}
