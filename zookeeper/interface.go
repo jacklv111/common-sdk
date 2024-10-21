@@ -36,13 +36,13 @@ func CreateNode(path, ip string) (err error) {
 	return
 }
 
-// GetAllData 获取指定路径下的所有节点数据
-func GetAllData(path string) (result [][]byte, err error) {
-	result = make([][]byte, 0)
+// GetAllNodeIp 获取指定路径下的所有节点的 ip
+func GetAllNodeIp(path string) (map[string]string, error) {
+	result := make(map[string]string, 0)
 	children, _, err := conn.Children(path)
 	if err != nil {
 		log.Errorf("Unable to get children: %s", err)
-		return
+		return nil, err
 	}
 	log.Infof("service children found under [%s]: %v", path, children)
 	var data []byte
@@ -50,11 +50,11 @@ func GetAllData(path string) (result [][]byte, err error) {
 		data, _, err = conn.Get(path + "/" + child)
 		if err != nil {
 			log.Errorf("Unable to get data: %s", err)
-			return
+			return nil, err
 		}
-		result = append(result, data)
+		result[child] = string(data)
 	}
-	return
+	return result, nil
 }
 
 // 处理服务实例变化，将变化结果发送到 channel 中
