@@ -19,7 +19,7 @@ import (
 var client pulsar.Client
 
 // 初始化消息队列
-func initMsgQueue() (err error) {
+func InitMsgQueue() (err error) {
 	// 创建 Pulsar 客户端
 	client, err = pulsar.NewClient(pulsar.ClientOptions{
 		// Pulsar 服务地址
