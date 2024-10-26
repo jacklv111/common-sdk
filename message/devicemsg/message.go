@@ -14,17 +14,25 @@ import (
 // Message 定义消息结构体
 type Message struct {
 	ID       string          `json:"id"`
-	CreateAt int64           `json:"create_at"` // 可以使用时间格式
+	CreateAt int64           `json:"create_at"`
 	Type     MessageType     `json:"type"`
-	Data     json.RawMessage `json:"data"` // 使用空接口存储任何类型的数据
+	From     string          `json:"from"`
+	ToUser   string          `json:"to_user"`
+	ToGroup  string          `json:"to_group"`
+	Data     json.RawMessage `json:"data"`
 }
 
-func NewMessage(id string, createAt int64, messageType MessageType, data interface{}) *Message {
+func NewMessage(id string, createAt int64, messageType MessageType,
+	from string, toUser string, toGroup string, data interface{}) *Message {
+
 	dataJson, _ := json.Marshal(data)
 	return &Message{
 		ID:       id,
 		CreateAt: createAt,
 		Type:     messageType,
+		From:     from,
+		ToUser:   toUser,
+		ToGroup:  toGroup,
 		Data:     dataJson,
 	}
 }

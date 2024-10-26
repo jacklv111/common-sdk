@@ -1,1 +1,1 @@
-和 device 进行通信的 message
+与设备通信的 message 的协议
