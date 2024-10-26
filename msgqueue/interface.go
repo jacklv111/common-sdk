@@ -35,8 +35,8 @@ func InitMsgQueue() (err error) {
 // Send 发送消息
 // @param ctx
 // @param topic
-// @param message 要发送的消息，如可以是一个 json 格式的字符串
-func Send(ctx context.Context, topic string, message string) error {
+// @param message 要发送的消息
+func Send(ctx context.Context, topic string, message []byte) error {
 	// 创建生产者
 	producer, err := client.CreateProducer(pulsar.ProducerOptions{
 		Topic: topic,
@@ -49,7 +49,7 @@ func Send(ctx context.Context, topic string, message string) error {
 
 	// 发送消息
 	_, err = producer.Send(ctx, &pulsar.ProducerMessage{
-		Payload: []byte(message),
+		Payload: message,
 	})
 	if err != nil {
 		log.Errorf("Failed to send message, %v", err)
