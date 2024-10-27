@@ -72,6 +72,7 @@ require (
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/smarty/assertions v1.15.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
+	github.com/spf13/afero v1.11.0 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
