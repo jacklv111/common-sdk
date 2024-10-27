@@ -27,17 +27,17 @@ func InitZooKeeper() (err error) {
 }
 
 // CreateNode 创建一个服务节点
-func CreateNode(path, ip string) (err error) {
+func CreateNode(path, host string) (err error) {
 	// 将服务节点作为临时节点 (EPHEMERAL)，这样当服务断开时，ZooKeeper 会自动删除这个节点
-	_, err = conn.Create(path, []byte(ip), int32(zk.FlagEphemeral), zk.WorldACL(zk.PermAll))
+	_, err = conn.Create(path, []byte(host), int32(zk.FlagEphemeral), zk.WorldACL(zk.PermAll))
 	if err != nil {
 		log.Errorf("Unable to create node: %s", err)
 	}
 	return
 }
 
-// GetAllNodeIp 获取指定路径下的所有节点的 ip
-func GetAllNodeIp(path string) (map[string]string, error) {
+// GetAllNodeHost 获取指定路径下的所有节点的 host
+func GetAllNodeHost(path string) (map[string]string, error) {
 	result := make(map[string]string, 0)
 	children, _, err := conn.Children(path)
 	if err != nil {
@@ -126,9 +126,9 @@ func diff(oldList, newList []string) (added []string, removed []string) {
 	return added, removed
 }
 
-// GetNodeIp 获取指定节点的 ip
+// GetNodeHost 获取指定节点的 host
 // @param path 节点路径
-func GetNodeIp(path string) (string, error) {
+func GetNodeHost(path string) (string, error) {
 	data, _, err := conn.Get(path)
 	if err != nil {
 		log.Errorf("Unable to get data: %s", err)
