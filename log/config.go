@@ -21,18 +21,18 @@ import (
 
 type (
 	logConfig struct {
-		Level     string
-		Stdout    bool
-		Encoding  string
-		AddCaller bool
-		Color     bool
-		FilesOut  bool
+		Level     string `json:"level"`
+		Stdout    bool   `json:"stdout"`
+		Encoding  string `json:"encoding"`
+		AddCaller bool   `json:"addcaller"`
+		Color     bool   `json:"color"`
+		FilesOut  bool   `json:"filesout"`
 		LogPath   []*logFilePath
 	}
 
 	logFilePath struct {
-		Level string
-		Hook  *lumberjack.Logger
+		Level string             `json:"level"`
+		Hook  *lumberjack.Logger `json:"hook"`
 	}
 )
 
