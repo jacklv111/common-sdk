@@ -21,13 +21,13 @@ import (
 
 type (
 	logConfig struct {
-		Level     string `json:"level"`
-		Stdout    bool   `json:"stdout"`
-		Encoding  string `json:"encoding"`
-		AddCaller bool   `json:"addcaller"`
-		Color     bool   `json:"color"`
-		FilesOut  bool   `json:"filesout"`
-		LogPath   []*logFilePath
+		Level     string         `json:"level"`
+		Stdout    bool           `json:"stdout"`
+		Encoding  string         `json:"encoding"`
+		AddCaller bool           `json:"addcaller"`
+		Color     bool           `json:"color"`
+		FilesOut  bool           `json:"filesout"`
+		LogPath   []*logFilePath `json:"logpath"`
 	}
 
 	logFilePath struct {
