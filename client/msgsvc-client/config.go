@@ -15,9 +15,9 @@ import (
 )
 
 type config struct {
-	Ip           string
-	Port         int
-	TimeoutInSec int
+	Ip           string `json:"ip"`
+	Port         int    `json:"port"`
+	TimeoutInSec int    `json:"timeout_in_sec"`
 }
 
 const (
