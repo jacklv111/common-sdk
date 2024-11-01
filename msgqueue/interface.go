@@ -23,8 +23,8 @@ func InitMsgQueue() (err error) {
 	// 创建 Pulsar 客户端
 	client, err = pulsar.NewClient(pulsar.ClientOptions{
 		// Pulsar 服务地址
-		// examples: pulsar://localhost:6650; pulsar://localhost:6650,pulsar://localhost:6651
-		URL: fmt.Sprintf("pulsar://%s", MsgQueueConfig.Hosts),
+		// examples: pulsar://localhost:6650
+		URL: fmt.Sprintf("pulsar://%s", MsgQueueConfig.Host),
 	})
 	if err != nil {
 		log.Fatal(err)
