@@ -9,25 +9,21 @@
 package msgqueue
 
 import (
-	"errors"
-	"regexp"
-	"strings"
-
 	"github.com/spf13/pflag"
 )
 
 type msgQueueConfig struct {
 	// Hosts is a list of the servers to connect to.
 	// The host format is a comma separated list of "hostname:port" string.
-	// Hosts example: "hostname1:6650,hostname1:6650,hostname1:6650"
-	Hosts string
+	// Host example: "hostname1:6650"
+	Host string
 }
 
 var MsgQueueConfig *msgQueueConfig
 
 func init() {
 	MsgQueueConfig = &msgQueueConfig{
-		Hosts: "localhost:6650",
+		Host: "localhost:6650",
 	}
 }
 
@@ -36,18 +32,9 @@ func (config *msgQueueConfig) ReadFromFile() error {
 }
 
 func (config *msgQueueConfig) AddFlags(flagSet *pflag.FlagSet) {
-	flagSet.StringVar(&config.Hosts, "msgqueue-hosts", "localhost:6650", "Value to indicate the hosts of service. The host format is a comma separated list of 'hostname:port' string. Hosts example: 'hostname1:6650,hostname1:6650,hostname1:6650'")
+	flagSet.StringVar(&config.Host, "msgqueue-host", "localhost:6650", "Value to indicate the host of service.")
 }
 
 func (config msgQueueConfig) Validate() []error {
-	re := regexp.MustCompile(`^(\w+:\d+)(,\w+:\d+)*$`)
-	// 使用正则表达式匹配
-	if re.MatchString(config.Hosts) {
-		return []error{}
-	}
-	return []error{errors.New("invalid msgqueue hosts")}
-}
-
-func (config *msgQueueConfig) GetHosts() []string {
-	return strings.Split(config.Hosts, ",")
+	return []error{}
 }
