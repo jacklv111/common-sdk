@@ -25,6 +25,7 @@ func TestConfigFunc(t *testing.T) {
 		{"test4", "localhost", true},
 		{"test5", "localhost:gggg", true},
 		{"test6", "localhost:2181,localhost", true},
+		{"test7", "139.9.36.40:32043", false},
 	}
 	for _, tt := range tests {
 		ZkConfig.Hosts = tt.hosts
