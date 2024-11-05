@@ -40,7 +40,7 @@ func (config *zookeeperConfig) AddFlags(flagSet *pflag.FlagSet) {
 }
 
 func (config zookeeperConfig) Validate() []error {
-	re := regexp.MustCompile(`^(\w+:\d+)(,\w+:\d+)*$`)
+	re := regexp.MustCompile(`^([\w\.-]+:\d+)(,[\w\.-]+:\d+)*$`)
 	// 使用正则表达式匹配
 	if re.MatchString(config.Hosts) {
 		return []error{}
