@@ -67,7 +67,7 @@ func HandleServiceChanges(servicePath string, changesChan chan<- ServiceChange) 
 		return
 	}
 
-	log.Errorf("Initial service instances:", children)
+	log.Infof("Initial service instances:", children)
 
 	for {
 		// 等待子节点变化事件
