@@ -9,7 +9,9 @@
 package msgsvcclient
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 
 	"github.com/spf13/pflag"
 )
@@ -21,7 +23,7 @@ type config struct {
 }
 
 const (
-	SERVER_CONFIG_PATH = "./conf/msgsvcclient_server.json"
+	SERVER_CONFIG_PATH = "./conf/msgsvc_client_server.json"
 )
 
 var Config *config
@@ -39,7 +41,14 @@ func (cfg config) GetServerUrl() string {
 }
 
 func (cfg *config) ReadFromFile() error {
-	return nil
+	fmt.Println("msgsvc client read config from file")
+	content, err := os.ReadFile(SERVER_CONFIG_PATH)
+	if err != nil {
+		fmt.Printf("msgsvc client config read from file error: %v", err)
+		return err
+	}
+	fmt.Println("msgsvc client config", string(content))
+	return json.Unmarshal(content, &cfg)
 }
 
 func (cfg *config) AddFlags(flagSet *pflag.FlagSet) {
