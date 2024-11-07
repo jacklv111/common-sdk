@@ -9,6 +9,7 @@
 package msgsvcclient
 
 import (
+	"crypto/tls"
 	"net/http"
 	"time"
 
@@ -28,7 +29,19 @@ func Init() (err error) {
 			Description: "No description provided",
 		},
 	}
-	client := http.Client{}
+	// Set up the TLS configuration
+	tlsConfig := &tls.Config{
+		InsecureSkipVerify: Config.InsecureSkipVerify, 
+	}
+	// Create an http.Transport with the custom TLS config
+	transport := &http.Transport{
+		TLSClientConfig: tlsConfig,
+	}
+
+	client := http.Client{
+		Transport: transport,
+	}
+
 	client.Timeout = time.Second * time.Duration(Config.TimeoutInSec)
 	clientConfig.HTTPClient = &client
 	msgsvcClient = msgsvcclientgo.NewAPIClient(clientConfig)
