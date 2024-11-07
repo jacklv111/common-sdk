@@ -20,6 +20,8 @@ type config struct {
 	Ip           string `json:"ip"`
 	Port         int    `json:"port"`
 	TimeoutInSec int    `json:"timeout_in_sec"`
+	// Only set to true if you want to skip verification (e.g., for testing)
+	InsecureSkipVerify bool `json:"insecure_skip_verify"`
 }
 
 const (
@@ -55,6 +57,7 @@ func (cfg *config) AddFlags(flagSet *pflag.FlagSet) {
 	flagSet.StringVar(&cfg.Ip, "msgsvcclient-server-ip", cfg.Ip, "msgsvcclient server ip")
 	flagSet.IntVar(&cfg.Port, "msgsvcclient-server-port", cfg.Port, "msgsvcclient server port")
 	flagSet.IntVar(&cfg.TimeoutInSec, "msgsvcclient-client-timeout-in-sec", cfg.TimeoutInSec, "msgsvcclient timeout in second")
+	flagSet.BoolVar(&cfg.InsecureSkipVerify, "msgsvcclient-insecure-skip-verify", cfg.InsecureSkipVerify, "msgsvcclient insecure skip verify")
 }
 
 func (cfg *config) Validate() []error {

@@ -9,7 +9,9 @@
 package usermngclient
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 
 	"github.com/spf13/pflag"
 )
@@ -18,6 +20,8 @@ type config struct {
 	Ip           string `json:"ip"`
 	Port         int    `json:"port"`
 	TimeoutInSec int    `json:"timeout_in_sec"`
+	// Only set to true if you want to skip verification (e.g., for testing)
+	InsecureSkipVerify bool `json:"insecure_skip_verify"`
 }
 
 const (
@@ -39,13 +43,21 @@ func (cfg config) GetServerUrl() string {
 }
 
 func (cfg *config) ReadFromFile() error {
-	return nil
+	fmt.Println("usermng client read config from file")
+	content, err := os.ReadFile(SERVER_CONFIG_PATH)
+	if err != nil {
+		fmt.Printf("usermng client config read from file error: %v", err)
+		return err
+	}
+	fmt.Println("usermng client config", string(content))
+	return json.Unmarshal(content, &cfg)
 }
 
 func (cfg *config) AddFlags(flagSet *pflag.FlagSet) {
 	flagSet.StringVar(&cfg.Ip, "usermngclient-server-ip", cfg.Ip, "usermngclient server ip")
 	flagSet.IntVar(&cfg.Port, "usermngclient-server-port", cfg.Port, "usermngclient server port")
 	flagSet.IntVar(&cfg.TimeoutInSec, "usermngclient-client-timeout-in-sec", cfg.TimeoutInSec, "usermngclient timeout in second")
+	flagSet.BoolVar(&cfg.InsecureSkipVerify, "usermngclient-insecure-skip-verify", cfg.InsecureSkipVerify, "usermngclient insecure skip verify")
 }
 
 func (cfg *config) Validate() []error {
